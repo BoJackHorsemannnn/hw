@@ -1,0 +1,187 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("choose task number:");
+        int choice = int.Parse(Console.ReadLine());
+
+        switch (choice)
+        {
+            case 1:
+                Task1();
+                break;
+            case 2:
+                Task2();
+                break;
+            case 3:
+                Task3();
+                break;
+            case 4:
+                Task4();
+                break;
+            case 5:
+                Task5();
+                break;
+            case 6:
+                Task6();
+                break;
+            default:
+                Console.WriteLine("Неверный номер задания.");
+                break;
+        }
+    }
+// got посоветовал все таски сразу в одном сделать 
+
+    // Задание 1
+    static void Task1()
+    {
+        Console.Write("input num from 1 to 100: ");
+        int number = int.Parse(Console.ReadLine());
+
+        if (number < 1 || number > 100)
+        {
+            Console.WriteLine("error");
+            return;
+        }
+
+        if (number % 3 == 0 && number % 5 == 0)
+            Console.WriteLine("Fizz Buzz");
+        else if (number % 3 == 0)
+            Console.WriteLine("Fizz");
+        else if (number % 5 == 0)
+            Console.WriteLine("Buzz");
+        else
+            Console.WriteLine(number);
+    }
+
+    // Задание 2
+    static void Task2()
+    {
+        Console.Write("Введите число: ");
+        double number = double.Parse(Console.ReadLine());
+
+        Console.Write("Введите процент: ");
+        double percent = double.Parse(Console.ReadLine());
+
+        double result = number * percent / 100;
+        Console.WriteLine($"{percent}% от {number} = {result}");
+    }
+
+    // Задание 3
+    static void Task3()
+    {
+        Console.Write("Введите первую цифру: ");
+        int a = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите вторую цифру: ");
+        int b = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите третью цифру: ");
+        int c = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите четвертую цифру: ");
+        int d = int.Parse(Console.ReadLine());
+
+        int number = a * 1000 + b * 100 + c * 10 + d;
+
+        Console.WriteLine("Полученное число: " + number);
+    }
+
+    // Задание 4
+    static void Task4()
+    {
+        Console.Write("Введите шестизначное число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        if (number < 100000 || number > 999999)
+        {
+            Console.WriteLine("Ошибка! Нужно ввести шестизначное число.");
+            return;
+        }
+
+        Console.Write("Введите первый разряд (1-6): ");
+        int pos1 = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите второй разряд (1-6): ");
+        int pos2 = int.Parse(Console.ReadLine());
+
+        int[] digits = new int[6];
+
+        digits[0] = number / 100000;
+        digits[1] = number / 10000 % 10;
+        digits[2] = number / 1000 % 10;
+        digits[3] = number / 100 % 10;
+        digits[4] = number / 10 % 10;
+        digits[5] = number % 10;
+
+        int temp = digits[pos1 - 1];
+        digits[pos1 - 1] = digits[pos2 - 1];
+        digits[pos2 - 1] = temp;
+
+        int result =
+            digits[0] * 100000 +
+            digits[1] * 10000 +
+            digits[2] * 1000 +
+            digits[3] * 100 +
+            digits[4] * 10 +
+            digits[5];
+
+        Console.WriteLine("Результат: " + result);
+    }
+
+    // Задание 5
+    static void Task5()
+    {
+        Console.WriteLine("1 - Фаренгейт -> Цельсий");
+        Console.WriteLine("2 - Цельсий -> Фаренгейт");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите температуру: ");
+        double temp = double.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            double celsius = (temp - 32) * 5 / 9;
+            Console.WriteLine($"Температура в Цельсиях: {celsius:F2}");
+        }
+        else if (choice == 2)
+        {
+            double fahrenheit = temp * 9 / 5 + 32;
+            Console.WriteLine($"Температура в Фаренгейтах: {fahrenheit:F2}");
+        }
+        else
+        {
+            Console.WriteLine("Неверный выбор.");
+        }
+    }
+
+    // Задание 6
+    static void Task6()
+    {
+        Console.Write("Введите начало диапазона: ");
+        int start = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите конец диапазона: ");
+        int end = int.Parse(Console.ReadLine());
+
+        if (start > end)
+        {
+            int temp = start;
+            start = end;
+            end = temp;
+        }
+
+        Console.WriteLine("Четные числа:");
+
+        for (int i = start; i <= end; i++)
+        {
+            if (i % 2 == 0)
+                Console.Write(i + " ");
+        }
+
+        Console.WriteLine();
+    }
+}
